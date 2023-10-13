@@ -8,4 +8,4 @@ const sessionsRouter = Router()
 sessionsRouter.post("/signup", validateSchema(signUpSchema), signUp)
 sessionsRouter.post("/signin", validateSchema(signInSchema), signIn)
 
-export default signRouter
+export default sessionsRouter

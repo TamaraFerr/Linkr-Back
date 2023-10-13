@@ -3,7 +3,8 @@ import { v4 as uuid } from 'uuid';
 import { getUserByEmail, insertSession, insertUser } from '../repository/sessions.repository.js';
 
 export async function signUp(req, res) {
-    const { email, password, confirmPassword, username} = req.body;
+
+    const { email, password, confirmPassword, username } = req.body;
 
     const checkEmail = await getUserByEmail(email);
     if (checkEmail.rowCount > 0) return res.status(409).send("Email já cadastrado");
@@ -11,18 +12,19 @@ export async function signUp(req, res) {
 
     const passwordCrypt = bcrypt.hashSync(password, 10);
 
-    try{
+    try {
 
         await insertUser(email, passwordCrypt, username);
         return res.status(201).send("Usuário cadastrado com sucesso");
 
-    }catch(err){
+    } catch (err) {
         return res.status(500).send(err.message);
     }
 
 }
 
 export async function signIn(req, res) {
+
     const { email, password } = req.body;
 
     const checkUser = await getUserByEmail(email);
@@ -34,19 +36,19 @@ export async function signIn(req, res) {
     const token = uuid();
     const data = {
         token: token
-      }
+    }
 
     const userId = checkUser.rows[0].id;
-    const state = true;
+    
 
-    try{
+    try {
 
-        await insertSession(userId, token, state);
-     
-       
+        await insertSession(userId, token);
+
+
         return res.status(200).send(data);
 
-    }catch(err){
+    } catch (err) {
         return res.status(500).send(err.message);
     }
 

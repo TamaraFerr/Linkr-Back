@@ -1,11 +1,12 @@
 import db from "../database/database.connection.js";
-import { createPost } from "../repository/posts.repository.js";
+import { allPost, createPost, userPosts } from "../repository/posts.repository.js";
 
 
 export async function getPosts(req, res) {
 
     try {
-        const twittes = await db.query(`SELECT * FROM posts `)
+        const twittes = await allPost()
+        
         res.status(201).send(twittes.rows)
 
     } catch (err) {
@@ -36,7 +37,7 @@ export async function getUserPosts(req, res) {
     const { userId } = res.locals
 
     try {
-        const twittes = await db.query(`SELECT * FROM posts WHERE "userId" = $1`, [userId])
+        const twittes = await userPosts(userId)
         res.status(201).send(twittes.rows)
 
     } catch (err) {

@@ -7,8 +7,8 @@ import { postSchema } from "../schemas/post.schemas.js";
 const postsRouter = Router()
 
 postsRouter.get('/timeline', validateAuth, getPosts)
-postsRouter.post('/timeline', validateSchema(postSchema),validateAuth, postTwittes)
-postsRouter.get('/user/:id',validateAuth, getUserPosts)
+postsRouter.post('/timeline', validateSchema(postSchema), validateAuth, postTwittes)
+postsRouter.get('/user/:id', validateAuth, getUserPosts)
 
 
 

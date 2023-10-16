@@ -15,6 +15,14 @@ export async function allPost() {
     )
 }
 
+export async function getUser(userId){
+    return(
+
+        db.query(`SELECT * FROM users WHERE id = $1`,[userId])
+    )
+           
+}
+
 export async function createPost(userId, url, description) {
 
     return (

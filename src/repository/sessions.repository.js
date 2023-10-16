@@ -17,3 +17,5 @@ export async function insertSession(userid, token) {
 export async function checkToken(token) {
     return db.query(`SELECT * FROM sessions WHERE token = $1`, [token]);
 }
+
+//test

@@ -4,9 +4,9 @@ export async function getUserByEmail(email) {
     return db.query('SELECT * FROM users WHERE "email" = $1', [email]);
 }
 
-export async function insertUser(email, password, username) {
-    return db.query('INSERT INTO users (email, password, name) VALUES ($1, $2, $3);',
-        [email, password, username]);
+export async function insertUser(email, password, username, pictureurl) {
+    return db.query('INSERT INTO users (email, password, username, pictureurl) VALUES ($1, $2, $3, $4);',
+        [email, password, username, pictureurl]);
 }
 
 export async function insertSession(userId, token) {

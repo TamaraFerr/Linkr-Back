@@ -4,7 +4,7 @@ import { getUserByEmail, insertSession, insertUser } from '../repository/session
 
 export async function signUp(req, res) {
 
-    const { email, password, confirmPassword, username } = req.body;
+    const { email, password, username, pictureurl } = req.body;
 
     const checkEmail = await getUserByEmail(email);
     if (checkEmail.rowCount > 0) return res.status(409).send("Email já cadastrado");
@@ -14,7 +14,7 @@ export async function signUp(req, res) {
 
     try {
 
-        await insertUser(email, passwordCrypt, username);
+        await insertUser(email, passwordCrypt, username, pictureurl);
         return res.status(201).send("Usuário cadastrado com sucesso");
 
     } catch (err) {

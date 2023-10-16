@@ -9,9 +9,9 @@ export async function insertUser(email, password, username, pictureurl) {
         [email, password, username, pictureurl]);
 }
 
-export async function insertSession(userId, token) {
-    return db.query('INSERT INTO sessions ("userId", token) VALUES ($1, $2);',
-        [userId, token]);
+export async function insertSession(userid, token) {
+    return db.query('INSERT INTO sessions (userid, token) VALUES ($1, $2);',
+        [userid, token]);
 }
 
 export async function checkToken(token) {

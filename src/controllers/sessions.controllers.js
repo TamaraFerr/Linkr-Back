@@ -8,7 +8,6 @@ export async function signUp(req, res) {
 
     const checkEmail = await getUserByEmail(email);
     if (checkEmail.rowCount > 0) return res.status(409).send("Email já cadastrado");
-    if (password !== confirmPassword) return res.status(422).send("Senhas e confirmação não conferem");
 
     const passwordCrypt = bcrypt.hashSync(password, 10);
 

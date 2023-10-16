@@ -9,7 +9,6 @@ export async function createPost(userId, url, description) {
         VALUES ($1,$2,$3);
         `, [userId, url, description])
 
-
     )
 
 }
